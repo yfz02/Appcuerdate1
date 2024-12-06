@@ -9,4 +9,13 @@
     <string name="repasar">Repasar</string>
     <string name="cerrar_sesi_n">Cerrar Sesión</string>
     <string name="crear">Crear Test</string>
+    <string name="a_adir_test">AÑADIR TEST</string>
+    <string name="guardar">Guardar</string>
+    <string name="crear_test">CREAR TEST</string>
+    <string name="a_adir">AÑADIR</string>
+    <string name="copiar_test">COPIAR TEST</string>
+    <string name="pegar_test">PEGAR TEST</string>
+    <string name="a_adir_tema">AÑADIR TEMA</string>
+    <string name="subtema_test1">Subtema Test1</string>
+    <string name="titulo_materia">Titulo Materia</string>
 </resources>

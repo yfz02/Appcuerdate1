@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        android.widget.Button btnCrear = findViewById(R.id.BtnCrear);
+
+       btnCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CrearTest.class);
+                startActivity(intent);
+            }
+        });
 
 
 
