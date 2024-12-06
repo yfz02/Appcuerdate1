@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">APPCUÉRDATE</string>
+    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="acceder">ACCEDER</string>
+    <string name="registrate">REGÍSTRATE</string>
+    <string name="log_out">CERRAR SESIÓN</string>
+    <string name="repasar">Repasar</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
+    <string name="crear">Crear Test</string>
+</resources>

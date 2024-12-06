@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "748553486237",
+    "project_id": "app1-e9842",
+    "storage_bucket": "app1-e9842.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748553486237:android:19c79a245677befb33f974",
+        "android_client_info": {
+          "package_name": "com.example.appcuerdate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcehcv6h3jSK9_Tl85gcT92wHLMdq7gX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
