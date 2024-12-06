@@ -3,6 +3,7 @@ package com.example.appcuerdate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,6 +19,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
@@ -92,10 +97,9 @@ public class Login extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 } else {
-
-                                    Toast.makeText(Login.this, "Error de autentificación",
-                                            Toast.LENGTH_LONG).show();
-
+                                    Toast.makeText(Login.this, "Error al iniciar sesión: "+task.getException().getMessage()+"!", Toast.LENGTH_LONG).show();
+                                    Log.e("Firebase", "Error al iniciar sesión", task.getException());
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             }
                         });
