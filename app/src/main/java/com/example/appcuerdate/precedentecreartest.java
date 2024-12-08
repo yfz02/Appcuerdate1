@@ -136,8 +136,7 @@ public class precedentecreartest extends BottomSheetDialogFragment {
                             public void onComplete(@NonNull Task<DocumentReference> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show();
-                                    /*
-                                    todo intent pagina nueva*/
+
                                 } else {
                                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
