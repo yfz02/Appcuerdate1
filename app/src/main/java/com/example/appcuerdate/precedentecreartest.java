@@ -42,8 +42,8 @@ public class precedentecreartest extends BottomSheetDialogFragment {
     private EditText editTextSubTitulo;
     private android.widget.Button botonGuardar;
     private FirebaseFirestore firestore;
-    private String id = "";
     private Context context;
+    public String id = "";
         public static precedentecreartest newInstance(){
             return new precedentecreartest();
         }
@@ -62,45 +62,15 @@ public class precedentecreartest extends BottomSheetDialogFragment {
         editTextSubTitulo = view.findViewById(R.id.editTextSubTitulo);
         botonGuardar = view.findViewById(R.id.botonGuardar);
         firestore= FirebaseFirestore.getInstance();
-        boolean isUpdate = false;
         final Bundle bundle = getArguments();
         if (bundle != null){
-            isUpdate = true;
-            String task = bundle.getString("task");
+            String padreTest = bundle.getString("padreTest");
             id = bundle.getString("id");
-
-            editTextTitulo.setText(task);
-
-            if (task.length() > 0){
+            if (padreTest != null && !padreTest.isEmpty()){
                 botonGuardar.setEnabled(false);
                 botonGuardar.setBackgroundColor(Color.GRAY);
             }
         }
-        editTextSubTitulo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().equals("")){
-                    botonGuardar.setEnabled(false);
-                    botonGuardar.setBackgroundColor(Color.GRAY);
-                }else{
-                    botonGuardar.setEnabled(true);
-                    botonGuardar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary));
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-
-
-
-            }
-        });
         editTextTitulo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -121,32 +91,53 @@ public class precedentecreartest extends BottomSheetDialogFragment {
             @Override
             public void afterTextChanged(Editable editable) {
 
+
+
+
             }
         });
-        boolean finalIsUpdate = isUpdate;
+        editTextSubTitulo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().equals("")){
+                    botonGuardar.setEnabled(false);
+                    botonGuardar.setBackgroundColor(Color.GRAY);
+                }else{
+                    botonGuardar.setEnabled(true);
+                    botonGuardar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String info1 = editTextTitulo.getText().toString();
                 String info2 = editTextSubTitulo.getText().toString();
-
-                if (finalIsUpdate) {
-                    firestore.collection("task").document(id).update("info1", info1, "info2", info2);
-                    Toast.makeText(context, "Task Updated", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    if (info1.isEmpty()) {
-                        Toast.makeText(context, "Empty task not Allowed !!", Toast.LENGTH_SHORT).show();
+                    if (info1.isEmpty()||info2.isEmpty()) {
+                        Toast.makeText(context, "Añadir texto", Toast.LENGTH_SHORT).show();
+                        return;
                     } else {
                         Map<String, Object> taskMap = new HashMap<>();
-                        taskMap.put("info1", info1);
-                        taskMap.put("info2", info2);
+                        taskMap.put("titulo", info1);
+                        taskMap.put("subtitulo", info2);
 
-                        firestore.collection("task").add(taskMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        firestore.collection("padreTest").add(taskMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(context, "Task Saved", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Guardado", Toast.LENGTH_SHORT).show();
+                                    /*
+                                    todo intent pagina nueva*/
                                 } else {
                                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -158,7 +149,7 @@ public class precedentecreartest extends BottomSheetDialogFragment {
                             }
                         });
                     }
-                }
+
                 dismiss();
             }
         });
